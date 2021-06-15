@@ -56,7 +56,7 @@ class Mule:
         self.driver.find_element_by_css_selector(
             '#header > div.header-center.cf > ul > li.l-mymule').click()
         sleep(1)
-        self.driver.find_element_by_css_selector( 
+        self.driver.find_element_by_css_selector(
             '#mymule > div.browse-wrapper > ul > li:nth-child(2) > a').click()
         sleep(1)
         self.driver.find_element_by_css_selector(
@@ -64,7 +64,8 @@ class Mule:
         sleep(1)
 
         # 최신글로 올리기 클릭
-        self.driver.find_element_by_css_selector('#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
+        self.driver.find_element_by_css_selector(
+            '#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
         sleep(1)
         self.driver.switch_to.alert.accept()
         sleep(1)
@@ -72,7 +73,8 @@ class Mule:
         sleep(1)
 
         # 로그아웃 하기
-        self.driver.find_element_by_css_selector('#header > div.header-center.cf > ul > li.l-logout').click()
+        self.driver.find_element_by_css_selector(
+            '#header > div.header-center.cf > ul > li.l-logout').click()
         sleep(1)
         self.driver.switch_to.alert.accept()
         sleep(1)
