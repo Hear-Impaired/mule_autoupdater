@@ -67,8 +67,10 @@ class Mule:
         self.driver.find_element_by_css_selector(
             '#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
         sleep(1)
+        print(self.driver.switch_to.alert.text)
         self.driver.switch_to.alert.accept()
         sleep(1)
+        print(self.driver.switch_to.alert.text)
         self.driver.switch_to.alert.accept()
         sleep(1)
 
@@ -76,5 +78,6 @@ class Mule:
         self.driver.find_element_by_css_selector(
             '#header > div.header-center.cf > ul > li.l-logout').click()
         sleep(1)
+        print(self.driver.switch_to.alert.text)
         self.driver.switch_to.alert.accept()
         sleep(1)
