@@ -16,7 +16,7 @@ class Mule:
         self.pw = _pw
 
     def __del__(self):
-        self.driver.close()
+        self.driver.quit()
 
     def setArgs(self):
         options = Options()

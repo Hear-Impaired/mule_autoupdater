@@ -3,7 +3,7 @@ Description=mule updater
 
 [Service]
 Type=simple
-ExecStart=/root/github_repository/python_study/mule.sh
+ExecStart=/root/github_repository/mule_autoupdater/mule.sh
 Restart=always
 RestartSec=14400
 
