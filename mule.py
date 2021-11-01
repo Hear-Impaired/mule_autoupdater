@@ -1,3 +1,4 @@
+import traceback
 import platform
 from time import sleep
 
@@ -25,7 +26,9 @@ class Mule:
         try:
             self.driver.quit()
         except Exception as e:
-                print("__del__ -> except : " + e)
+            excpt_str = traceback.format_exc()
+            print(excpt_str)
+            print("__del__ -> except\n", excpt_str)
 
 
     def setArgs(self):
@@ -94,11 +97,14 @@ class Mule:
             self.msgr.post_message("#암호화폐", "Mule : " + "ID:" + self.id + " 끌어올리기 완료.")
 
         except Exception as e:
-            print(""+e)
-            self.msgr.post_message("#암호화폐", "Mule : " + "except 발생!!!")
+            excpt_str = traceback.format_exc()
+            print(excpt_str)
+            self.msgr.post_message("#암호화폐", "Mule : " + "except 발생!!!\n", excpt_str)
 
         finally:
             try:
                 self.driver.quit()
             except Exception as e:
-                print("finally -> except : " + e)
+                excpt_str = traceback.format_exc()
+                print(excpt_str)
+                print("finally -> except!!!\n", excpt_str)
