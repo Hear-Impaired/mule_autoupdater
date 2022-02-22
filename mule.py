@@ -47,6 +47,7 @@ class Mule:
     def run(self):
         try:
             self.driver.get("https://www.mule.co.kr/")
+            sleep(1)
 
             # 로그인 창 열기
             self.driver.find_element_by_css_selector(
@@ -94,17 +95,15 @@ class Mule:
             sleep(1)
 
             # slack에 완료 메세지 보내기
-            self.msgr.post_message("#암호화폐", "Mule : " + "ID:" + self.id + " 끌어올리기 완료.")
+            self.msgr.post_message("#암호화폐", f"Mule : ID: {self.id} 끌어올리기 완료.")
 
         except Exception as e:
             excpt_str = traceback.format_exc()
-            print(excpt_str)
-            self.msgr.post_message("#암호화폐", "Mule : " + "except 발생!!!\n", excpt_str)
+            self.msgr.post_message("#암호화폐", f"Mule : except 발생!!!\n{excpt_str}")
 
         finally:
             try:
                 self.driver.quit()
             except Exception as e:
                 excpt_str = traceback.format_exc()
-                print(excpt_str)
-                print("finally -> except!!!\n", excpt_str)
+                self.msgr.post_message("#암호화폐", f"finally -> except!!!\n{excpt_str}")
