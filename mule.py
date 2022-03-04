@@ -35,7 +35,7 @@ class Mule:
         options = Options()
         for arg in self.args:
             options.add_argument(arg)
-        if platform.processor().__eq__('aarch64'):
+        if platform.processor().__eq__(''):
             self.driver = webdriver.Chrome(
                 options=options, executable_path="/usr/bin/chromedriver")
         elif platform.processor().__eq__('Intel64 Family 6 Model 94 Stepping 3, GenuineIntel'):
