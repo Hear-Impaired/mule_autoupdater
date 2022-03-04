@@ -82,9 +82,13 @@ class Mule:
             self.driver.find_element_by_css_selector(
                 '#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
             sleep(1)
-            self.driver.switch_to.alert.accept()
+            alert = self.driver.switch_to.alert
+            self.msgr.post_message("#암호화폐", alert.text)
             sleep(1)
-            self.driver.switch_to.alert.accept()
+            try:
+                self.driver.switch_to.alert.accept()
+            except:
+                None
             sleep(1)
 
             # 로그아웃 하기
