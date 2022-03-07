@@ -2,6 +2,7 @@ import traceback
 import platform
 from time import sleep
 
+import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
@@ -82,12 +83,16 @@ class Mule:
             self.driver.find_element_by_css_selector(
                 '#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
             sleep(1)
-            alert = self.driver.switch_to.alert
-            self.msgr.post_message("#암호화폐", alert.text)
+            try:
+                self.msgr.post_message("#암호화폐", f'{self.driver.switch_to.alert.text}')
+                self.driver.switch_to.alert.accept()
+            except selenium.common.exceptions.NoAlertPresentException :
+                None
             sleep(1)
             try:
+                self.msgr.post_message("#암호화폐", f'{self.driver.switch_to.alert.text}')
                 self.driver.switch_to.alert.accept()
-            except:
+            except selenium.common.exceptions.NoAlertPresentException :
                 None
             sleep(1)
 
@@ -95,7 +100,11 @@ class Mule:
             self.driver.find_element_by_css_selector(
                 '#header > div.header-center.cf > ul > li.l-logout').click()
             sleep(1)
-            self.driver.switch_to.alert.accept()
+            try:
+                self.msgr.post_message("#암호화폐", f'alert text #3 \"{self.driver.switch_to.alert.text}\"')
+                self.driver.switch_to.alert.accept()
+            except selenium.common.exceptions.NoAlertPresentException :
+                None
             sleep(1)
 
             # slack에 완료 메세지 보내기
