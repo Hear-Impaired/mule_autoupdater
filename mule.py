@@ -84,13 +84,15 @@ class Mule:
                 '#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
             sleep(1)
             try:
-                self.msgr.post_message("#암호화폐", f'{self.driver.switch_to.alert.text}')
+                if self.driver.switch_to.alert.text != '최신글로 등록하시겠습니까?':
+                    self.msgr.post_message("#암호화폐", f'{self.driver.switch_to.alert.text}')
                 self.driver.switch_to.alert.accept()
             except selenium.common.exceptions.NoAlertPresentException :
                 None
             sleep(1)
             try:
-                self.msgr.post_message("#암호화폐", f'{self.driver.switch_to.alert.text}')
+                if self.driver.switch_to.alert.text != '최신글로 등록되었습니다.':
+                    self.msgr.post_message("#암호화폐", f'{self.driver.switch_to.alert.text}')
                 self.driver.switch_to.alert.accept()
             except selenium.common.exceptions.NoAlertPresentException :
                 None
@@ -101,11 +103,9 @@ class Mule:
                 '#header > div.header-center.cf > ul > li.l-logout').click()
             sleep(1)
             try:
-                self.msgr.post_message("#암호화폐", f'alert text #3 \"{self.driver.switch_to.alert.text}\"')
                 self.driver.switch_to.alert.accept()
             except selenium.common.exceptions.NoAlertPresentException :
-                None
-            sleep(1)
+                self.msgr.post_message("#암호화폐", f'로그아웃 Exception')
 
             # slack에 완료 메세지 보내기
             self.msgr.post_message("#암호화폐", f"Mule : ID: {self.id} 끌어올리기 완료.")
