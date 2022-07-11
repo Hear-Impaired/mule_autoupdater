@@ -6,6 +6,7 @@ import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
 
 """ slack 메세지 전송용"""
 import sys
@@ -23,14 +24,13 @@ class Mule:
         self.id = _id
         self.pw = _pw
 
-    def __del__(self):
-        try:
-            self.driver.quit()
-        except Exception as e:
-            excpt_str = traceback.format_exc()
-            print(excpt_str)
-            print("__del__ -> except\n", excpt_str)
-
+    # def __del__(self):
+    #     try:
+    #         self.driver.quit()
+    #     except Exception as e:
+    #         excpt_str = traceback.format_exc()
+    #         print(excpt_str)
+    #         print("__del__ -> except\n", excpt_str)
 
     def setArgs(self):
         options = Options()
@@ -51,36 +51,33 @@ class Mule:
             sleep(1)
 
             # 로그인 창 열기
-            self.driver.find_element_by_css_selector(
-                '#header > div.header-center.cf > ul > li.l-login').click()
+            self.driver.find_element(By.CSS_SELECTOR, 'li.l-login').click()
             sleep(1)
 
             # ID / PW 입력
-            self.driver.find_element_by_css_selector(
-                '#login-user-id').send_keys(self.id)
+            self.driver.find_element(By.CSS_SELECTOR, '#login-user-id').send_keys(self.id)
             sleep(1)
-            self.driver.find_element_by_css_selector(
-                '#login-user-pw').send_keys(self.pw)
+            self.driver.find_element(By.CSS_SELECTOR, '#login-user-pw').send_keys(self.pw)
             sleep(1)
 
             # 로그인 버튼 클릭
-            self.driver.find_element_by_css_selector(
+            self.driver.find_element(By.CSS_SELECTOR, 
                 '#modal-login > div > div > div > div > div.left-box > a.login-bt.login').click()
             sleep(10)
 
             # 마이 뮬 메뉴로 가 내가 쓴 글 찾아 들어가기
-            self.driver.find_element_by_css_selector(
+            self.driver.find_element(By.CSS_SELECTOR, 
                 '#header > div.header-center.cf > ul > li.l-mymule').click()
             sleep(1)
-            self.driver.find_element_by_css_selector(
+            self.driver.find_element(By.CSS_SELECTOR, 
                 '#mymule > div.browse-wrapper > ul > li:nth-child(2) > a').click()
             sleep(1)
-            self.driver.find_element_by_css_selector(
+            self.driver.find_element(By.CSS_SELECTOR, 
                 '#mymule > div.content-wrapper > div:nth-child(4) > div.scroll-table > table > tbody > tr:nth-child(2) > td:nth-child(2) > a').click()
             sleep(1)
 
             # 최신글로 올리기 클릭
-            self.driver.find_element_by_css_selector(
+            self.driver.find_element(By.CSS_SELECTOR, 
                 '#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
             sleep(3)
             try:
@@ -99,7 +96,7 @@ class Mule:
             sleep(1)
 
             # 로그아웃 하기
-            self.driver.find_element_by_css_selector(
+            self.driver.find_element(By.CSS_SELECTOR, 
                 '#header > div.header-center.cf > ul > li.l-logout').click()
             sleep(1)
             try:
