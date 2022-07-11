@@ -82,20 +82,20 @@ class Mule:
             # 최신글로 올리기 클릭
             self.driver.find_element_by_css_selector(
                 '#board > div.body-wrapper-board.cf > div.market-btn-wrapper > div.btn-list > a:nth-child(1)').click()
-            sleep(1)
+            sleep(3)
             try:
                 if self.driver.switch_to.alert.text != '최신글로 등록하시겠습니까? ':
                     self.msgr.post_message("#암호화폐", f'#1 {self.driver.switch_to.alert.text}')
                 self.driver.switch_to.alert.accept()
             except selenium.common.exceptions.NoAlertPresentException :
-                None
-            sleep(1)
+                print(traceback.format_exc())
+            sleep(3)
             try:
                 if self.driver.switch_to.alert.text != '최신글로 등록되었습니다.':
                     self.msgr.post_message("#암호화폐", f'#2 {self.driver.switch_to.alert.text}')
                 self.driver.switch_to.alert.accept()
             except selenium.common.exceptions.NoAlertPresentException :
-                None
+                print(traceback.format_exc())
             sleep(1)
 
             # 로그아웃 하기
