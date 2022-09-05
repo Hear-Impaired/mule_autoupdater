@@ -24,7 +24,6 @@ class Mule:
         "--mute-audio",
         "disable-gpu",
         "lang=ko_KR",
-        "User_Agent: Mozilla/5.0 \(Windows NT 10.0; Win64; x64\) AppleWebKit/537.36 \(KHTML, like Gecko\) Chrome/91.0.4472.77 Safari/537.36",
     ]
     msgr = slack()
 
@@ -61,21 +60,21 @@ class Mule:
     def run(self):
         try:
             self.driver.get("https://www.mule.co.kr/")
-            sleep(1)
+            sleep(3)
 
             # 로그인 창 열기
             self.driver.find_element(By.CSS_SELECTOR, "li.l-login").click()
-            sleep(1)
+            sleep(3)
 
             # ID / PW 입력
             self.driver.find_element(By.CSS_SELECTOR, "#login-user-id").send_keys(
                 self.id
             )
-            sleep(1)
+            sleep(3)
             self.driver.find_element(By.CSS_SELECTOR, "#login-user-pw").send_keys(
                 self.pw
             )
-            sleep(1)
+            sleep(3)
 
             # 로그인 버튼 클릭
             self.driver.find_element(
@@ -88,17 +87,17 @@ class Mule:
             self.driver.find_element(
                 By.CSS_SELECTOR, "#header > div.header-center.cf > ul > li.l-mymule"
             ).click()
-            sleep(1)
+            sleep(3)
             self.driver.find_element(
                 By.CSS_SELECTOR,
                 "#mymule > div.browse-wrapper > ul > li:nth-child(2) > a",
             ).click()
-            sleep(1)
+            sleep(3)
             self.driver.find_element(
                 By.CSS_SELECTOR,
                 "#mymule > div.content-wrapper > div:nth-child(4) > div.scroll-table > table > tbody > tr:nth-child(2) > td:nth-child(2) > a",
             ).click()
-            sleep(1)
+            sleep(3)
 
             # 최신글로 올리기 클릭
             self.driver.find_element(
@@ -123,13 +122,13 @@ class Mule:
                 self.driver.switch_to.alert.accept()
             except selenium.common.exceptions.NoAlertPresentException:
                 print(traceback.format_exc())
-            sleep(1)
+            sleep(3)
 
             # 로그아웃 하기
             self.driver.find_element(
                 By.CSS_SELECTOR, "#header > div.header-center.cf > ul > li.l-logout"
             ).click()
-            sleep(1)
+            sleep(3)
             try:
                 self.driver.switch_to.alert.accept()
             except selenium.common.exceptions.NoAlertPresentException:
